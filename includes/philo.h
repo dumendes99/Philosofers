@@ -6,7 +6,7 @@
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 20:01:49 by elima-me          #+#    #+#             */
-/*   Updated: 2022/02/09 21:29:35 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/02/09 21:33:02 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ enum e_errors {
 	ERR_NUMBERS_ARGS,
 	ERR_NEGATIVE_NUM
 };
-
 
 int			main(int argc, char *argv[]);
 int			ft_strnotisdigit(char *str);
