@@ -1,7 +1,7 @@
 NAME = philo
 
 CC = clang 
-CFLAGS = -Wall -Werror -Wextra 
+CFLAGS = -Wall -Werror -Wextra -g
 
 HEADER = $(addprefix $(INCLUDES_PATH)/, philo.h)
 
@@ -9,7 +9,8 @@ OBJECTS_PATH = ./objects
 SOURCES_PATH = ./sources
 INCLUDES_PATH = ./includes
 
-SOURCES_FILES =	main.c 
+SOURCES_FILES =	main.c \
+				utils.c 
 
 
 SOURCES = $(addprefix $(SOURCES_PATH)/, $(SOURCES_FILES))
