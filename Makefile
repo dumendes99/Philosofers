@@ -10,8 +10,9 @@ SOURCES_PATH = ./sources
 INCLUDES_PATH = ./includes
 
 SOURCES_FILES =	main.c \
-				utils.c 
-
+				utils.c \
+				setup.c \
+				print_errors.c 
 
 SOURCES = $(addprefix $(SOURCES_PATH)/, $(SOURCES_FILES))
 
@@ -23,11 +24,11 @@ REMOVE = rm -rf
 all: $(NAME)
 
 $(NAME): $(OBJECTS) 
-	$(CC) $(OBJECTS) -o $(NAME) -I $(INCLUDES_PATH)
+	$(CC) $(OBJECTS) -o $(NAME) -I $(INCLUDES_PATH) -fsanitize=address
 
 $(OBJECTS_PATH)/%.o: $(SOURCES_PATH)/%.c $(HEADER)
 	$(SAFE_MAKEDIR) $(OBJECTS_PATH)
-	$(CC) $(CFLAGS) -I $(INCLUDES_PATH) -o $@ -c $< 
+	$(CC) $(CFLAGS) -I $(INCLUDES_PATH) -o $@ -c $< -fsanitize=address
 
 re: fclean all 
 
