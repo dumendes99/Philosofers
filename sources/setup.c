@@ -6,7 +6,7 @@
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 22:12:34 by elima-me          #+#    #+#             */
-/*   Updated: 2022/02/12 14:20:52 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/02/12 14:24:08 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,8 @@ int	game_validator(t_infoPhilos *info_philos, char **argv)
 {
 	if (info_philos->n_philos < 1)
 		return (print_errors(ERR_NUMBER_PHILOS));
-	if (info_philos->time_to_die == 0)
-		return (print_errors(ERR_INVALID_VALUE));
-	if (info_philos->time_to_eat == 0)
-		return (print_errors(ERR_INVALID_VALUE));
-	if (info_philos->time_to_sleep == 0)
+	if (info_philos->time_to_die == 0 || info_philos->time_to_eat == 0
+		|| info_philos->time_to_sleep == 0)
 		return (print_errors(ERR_INVALID_VALUE));
 	if (argv[5] && info_philos->times_must_eat == 0)
 		return (print_errors(ERR_INVALID_VALUE));
