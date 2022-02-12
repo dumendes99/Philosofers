@@ -6,7 +6,7 @@
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 20:01:49 by elima-me          #+#    #+#             */
-/*   Updated: 2022/02/10 22:14:23 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/02/12 14:20:20 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,5 @@ void	ft_bzero(void *s, size_t n);
 int		get_info(t_infoPhilos *info_philos, char **argv);
 int		game_validator(t_infoPhilos *info_philos, char **argv);
 int		setup(int argc, char **argv, t_infoPhilos *info_philos);
-
 
 #endif
