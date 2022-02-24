@@ -8,11 +8,13 @@ HEADER = $(addprefix $(INCLUDES_PATH)/, philo.h)
 OBJECTS_PATH = ./objects
 SOURCES_PATH = ./sources
 INCLUDES_PATH = ./includes
+LINK = -pthread
 
 SOURCES_FILES =	main.c \
 				utils.c \
 				setup.c \
-				print_errors.c 
+				print_errors.c \
+				time_functions.c \
 
 SOURCES = $(addprefix $(SOURCES_PATH)/, $(SOURCES_FILES))
 
@@ -24,11 +26,11 @@ REMOVE = rm -rf
 all: $(NAME)
 
 $(NAME): $(OBJECTS) 
-	$(CC) $(OBJECTS) -o $(NAME) -I $(INCLUDES_PATH) -fsanitize=address
+	$(CC) $(LINK) $(OBJECTS)  -o $(NAME) -I $(INCLUDES_PATH) -fsanitize=address 
 
 $(OBJECTS_PATH)/%.o: $(SOURCES_PATH)/%.c $(HEADER)
 	$(SAFE_MAKEDIR) $(OBJECTS_PATH)
-	$(CC) $(CFLAGS) -I $(INCLUDES_PATH) -o $@ -c $< -fsanitize=address
+	$(CC) $(LINK) $(CFLAGS) -I $(INCLUDES_PATH) -o $@ -c $< -fsanitize=address 
 
 re: fclean all 
 
