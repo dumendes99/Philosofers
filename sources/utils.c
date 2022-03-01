@@ -6,7 +6,7 @@
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 18:29:41 by elima-me          #+#    #+#             */
-/*   Updated: 2022/02/24 20:19:39 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/02/28 19:39:58 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,11 @@ void	print_infos(t_config *config)
 	i = 0;
 	while (i < config->n_philos)
 	{
-		printf("PHILO NUMERO: %d\n \
-		id = %d\n \
+		printf("id = %d\n \
 		rfork = %d\n \
 		lfork = %d\n \
-		lst_meal = %d\n \
+		lst_meal = %ld\n \
 		t_ate = %d\n",
-			i,
 			config->philo[i].id,
 			config->philo[i].rfork,
 			config->philo[i].lfork,

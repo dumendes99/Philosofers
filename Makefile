@@ -26,11 +26,11 @@ REMOVE = rm -rf
 all: $(NAME)
 
 $(NAME): $(OBJECTS) 
-	$(CC) $(LINK) $(OBJECTS)  -o $(NAME) -I $(INCLUDES_PATH) -fsanitize=address 
+	$(CC) -g $(LINK) $(OBJECTS)  -o $(NAME) -I $(INCLUDES_PATH) -fsanitize=address 
 
 $(OBJECTS_PATH)/%.o: $(SOURCES_PATH)/%.c $(HEADER)
 	$(SAFE_MAKEDIR) $(OBJECTS_PATH)
-	$(CC) $(LINK) $(CFLAGS) -I $(INCLUDES_PATH) -o $@ -c $< -fsanitize=address 
+	$(CC) -g $(LINK) $(CFLAGS) -I $(INCLUDES_PATH) -o $@ -c $< -fsanitize=address 
 
 re: fclean all 
 

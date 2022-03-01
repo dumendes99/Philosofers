@@ -6,7 +6,7 @@
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 20:01:49 by elima-me          #+#    #+#             */
-/*   Updated: 2022/02/24 20:17:56 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/02/28 19:03:38 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,31 @@
 # include <stdlib.h>
 # include <string.h>
 # include <sys/time.h>
+# include <unistd.h>
 
-typedef struct s_philo {
+typedef struct s_config	t_config;
+typedef struct s_philo	t_philo;
+
+struct s_philo {
 	int			id;
 	int			t_ate;
 	int			rfork;
 	int			lfork;
-	int			lst_meal;
+	long int	lst_meal;
+	t_config	*config;
 	pthread_t	thread;
-}	t_philo;
+};
 
-typedef struct s_config {
+struct s_config {
 	int				n_philos;
 	int				t_die;
 	int				t_eat;
 	int				t_sleep;
 	int				times_must_eat;
+	long int		sim_start;
 	t_philo			*philo;
 	pthread_mutex_t	*fork;
-}	t_config;
+};
 
 enum e_errors {
 	ERR_INVALID_ARGS,
@@ -59,9 +65,9 @@ void			ft_bzero(void *s, size_t n);
 int				get_info(t_config *info_philos, char **argv);
 int				invalid_simulation(t_config *info_philos, char **argv);
 int				setup(int argc, char **argv, t_config *info_philos);
-void			*routine(void *param);
+void			*routine(void *sett);
 void			print_infos(t_config *config);
 int				free_all(t_config *config);
-long long int	now(void);
+long long int	get_now(void);
 
 #endif
