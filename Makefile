@@ -13,8 +13,10 @@ LINK = -pthread
 SOURCES_FILES =	main.c \
 				utils.c \
 				setup.c \
-				print_errors.c \
+				print_functions.c \
 				time_functions.c \
+				start_banquet.c \
+				monitor.c
 
 SOURCES = $(addprefix $(SOURCES_PATH)/, $(SOURCES_FILES))
 

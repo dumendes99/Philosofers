@@ -6,14 +6,14 @@
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 16:46:37 by elima-me          #+#    #+#             */
-/*   Updated: 2022/02/28 17:05:24 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/03/01 14:58:13 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 #include <sys/time.h>
 
-long long int	get_now(void)
+long int	get_now(void)
 {
 	struct timeval	time;
 

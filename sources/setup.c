@@ -6,7 +6,7 @@
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 22:12:34 by elima-me          #+#    #+#             */
-/*   Updated: 2022/02/28 19:49:17 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/03/01 16:02:17 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	create_philos(t_config *config)
 		config->philo[i].t_ate = 0;
 		config->philo[i].rfork = i;
 		config->philo[i].lfork = i + 1;
-		config->philo[i].lst_meal = 0;
+		config->philo[i].lst_meal = get_now();
 		config->philo[i].config = config;
 		pthread_mutex_init(&config->fork[i], NULL);
 		i++;
