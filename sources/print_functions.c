@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_errors.c                                     :+:      :+:    :+:   */
+/*   print_functions.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 21:31:49 by elima-me          #+#    #+#             */
-/*   Updated: 2022/03/01 18:33:48 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/03/02 14:12:56 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	print_status(long int now, t_philo *philo, char *status)
 {
-	printf("%ld\t %d %s\n", (now - philo->config->sim_start),
+	printf("%ld %d %s\n", (now - philo->config->sim_start),
 		philo->id, status);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 14:25:47 by elima-me          #+#    #+#             */
-/*   Updated: 2022/03/01 18:34:40 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/03/02 14:09:40 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,22 @@
 void	eat(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->config->fork[philo->rfork]);
-	print_status(get_now(), philo, "has taken fork");
 	if (philo->config->should_stop)
 	{
 		pthread_mutex_unlock(&philo->config->fork[philo->rfork]);
 		return ;
 	}
+	print_status(get_now(), philo, "has taken a fork");
+
 	pthread_mutex_lock(&philo->config->fork[philo->lfork]);
-	print_status(get_now(), philo, "has taken fork");
-	print_status(get_now(), philo, "is eating");
 	if (philo->config->should_stop)
 	{
 		pthread_mutex_unlock(&philo->config->fork[philo->rfork]);
 		pthread_mutex_unlock(&philo->config->fork[philo->lfork]);
 		return ;
 	}
+	print_status(get_now(), philo, "has taken a fork");
+	print_status(get_now(), philo, "is eating");
 	philo->lst_meal = get_now();
 	philo->t_ate += 1;
 	usleep(philo->config->t_eat * 1000);
@@ -47,9 +48,9 @@ void	*routine(void *philo)
 	while (!p->config->should_stop)
 	{
 		eat(p);
-		print_status(get_now(), p, "is sleeping");
-		if (p->config->should_stop)
+		if(p->config->should_stop)
 			return (0);
+		print_status(get_now(), p, "is sleeping");
 		usleep(p->config->t_sleep * 1000);
 		if (p->config->should_stop)
 			return (0);
