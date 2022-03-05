@@ -6,7 +6,7 @@
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 22:12:34 by elima-me          #+#    #+#             */
-/*   Updated: 2022/03/05 17:51:22 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/03/05 18:57:16 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	get_info(t_config *config, char **argv)
 
 int	invalid_simulation(t_config *config, char **argv)
 {
-	if (config->n_philos <= 1)
+	if (config->n_philos < 1)
 		return (print_errors(ERR_NUMBER_PHILOS));
 	if (config->t_die == 0 || config->t_eat == 0
 		|| config->t_sleep == 0)

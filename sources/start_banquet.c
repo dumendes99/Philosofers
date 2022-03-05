@@ -6,7 +6,7 @@
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 14:25:47 by elima-me          #+#    #+#             */
-/*   Updated: 2022/03/05 18:38:47 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/03/05 19:13:40 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,19 @@ void	eat(t_philo *philo)
 	pthread_mutex_unlock(&philo->config->fork[philo->lfork]);
 }
 
+void	lone_philo(t_philo *philo)
+{
+	print_status(get_now(), philo, "has taken a fork");
+	usleep(philo->config->t_die * 1000);
+}
+
 void	*routine(void *philo)
 {
 	t_philo	*p;
 
 	p = philo;
+	if (p->config->n_philos == 1)
+		lone_philo(philo);
 	if (p->id % 2 == 0)
 		usleep(1600);
 	while (!p->config->should_stop)

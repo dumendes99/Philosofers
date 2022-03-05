@@ -13,7 +13,7 @@ LINK = -pthread
 SOURCES_FILES =	main.c \
 				utils.c \
 				setup.c \
-				print_functions.c \
+				print_messages.c \
 				time_functions.c \
 				start_banquet.c \
 				monitor.c
