@@ -6,7 +6,7 @@
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 22:12:34 by elima-me          #+#    #+#             */
-/*   Updated: 2022/03/01 16:02:17 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/03/05 17:51:22 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@ int	get_info(t_config *config, char **argv)
 	config->t_eat = ft_atoi(argv[++i]);
 	config->t_sleep = ft_atoi(argv[++i]);
 	if (argv[++i])
+	{
 		config->times_must_eat = ft_atoi(argv[i]);
+	}
 	return (0);
 }
 
@@ -64,7 +66,7 @@ int	create_philos(t_config *config)
 	while (i < config->n_philos)
 	{
 		config->philo[i].id = i + 1;
-		config->philo[i].t_ate = 0;
+		config->philo[i].ate = 0;
 		config->philo[i].rfork = i;
 		config->philo[i].lfork = i + 1;
 		config->philo[i].lst_meal = get_now();

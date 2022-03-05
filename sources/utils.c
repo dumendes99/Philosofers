@@ -6,7 +6,7 @@
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 18:29:41 by elima-me          #+#    #+#             */
-/*   Updated: 2022/03/01 14:53:31 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/03/05 17:51:22 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ void	print_infos(t_config *config)
 		rfork = %d\n \
 		lfork = %d\n \
 		lst_meal = %ld\n \
-		t_ate = %d\n",
+		ate = %d\n",
 			config->philo[i].id,
 			config->philo[i].rfork,
 			config->philo[i].lfork,
 			config->philo[i].lst_meal,
-			config->philo[i].t_ate);
+			config->philo[i].ate);
 		i++;
 	}
 }

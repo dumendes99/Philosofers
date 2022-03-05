@@ -6,11 +6,22 @@
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 14:25:47 by elima-me          #+#    #+#             */
-/*   Updated: 2022/03/02 14:09:40 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/03/05 18:38:47 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
+
+int	unlock_mutex(t_philo *philo)
+{
+	if (philo->config->should_stop)
+	{
+		pthread_mutex_unlock(&philo->config->fork[philo->rfork]);
+		pthread_mutex_unlock(&philo->config->fork[philo->lfork]);
+		return (1);
+	}
+	return (0);
+}
 
 void	eat(t_philo *philo)
 {
@@ -21,19 +32,17 @@ void	eat(t_philo *philo)
 		return ;
 	}
 	print_status(get_now(), philo, "has taken a fork");
-
 	pthread_mutex_lock(&philo->config->fork[philo->lfork]);
-	if (philo->config->should_stop)
-	{
-		pthread_mutex_unlock(&philo->config->fork[philo->rfork]);
-		pthread_mutex_unlock(&philo->config->fork[philo->lfork]);
+	if (unlock_mutex(philo))
 		return ;
-	}
 	print_status(get_now(), philo, "has taken a fork");
-	print_status(get_now(), philo, "is eating");
 	philo->lst_meal = get_now();
-	philo->t_ate += 1;
+	print_status(get_now(), philo, "is eating");
+	philo->ate++;
 	usleep(philo->config->t_eat * 1000);
+	if (unlock_mutex(philo))
+		return ;
+	print_status(get_now(), philo, "is sleeping");
 	pthread_mutex_unlock(&philo->config->fork[philo->rfork]);
 	pthread_mutex_unlock(&philo->config->fork[philo->lfork]);
 }
@@ -48,12 +57,11 @@ void	*routine(void *philo)
 	while (!p->config->should_stop)
 	{
 		eat(p);
-		if(p->config->should_stop)
-			return (0);
-		print_status(get_now(), p, "is sleeping");
+		if (p->config->should_stop)
+			break ;
 		usleep(p->config->t_sleep * 1000);
 		if (p->config->should_stop)
-			return (0);
+			break ;
 		print_status(get_now(), p, "is thinking");
 	}
 	return (0);

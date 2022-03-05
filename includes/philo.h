@@ -6,7 +6,7 @@
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 20:01:49 by elima-me          #+#    #+#             */
-/*   Updated: 2022/03/01 18:29:58 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/03/05 17:51:24 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_philo	t_philo;
 
 struct s_philo {
 	int			id;
-	int			t_ate;
+	int			ate;
 	int			rfork;
 	int			lfork;
 	long int	lst_meal;
