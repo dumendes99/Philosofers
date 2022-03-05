@@ -6,11 +6,39 @@
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 18:29:41 by elima-me          #+#    #+#             */
-/*   Updated: 2022/02/10 22:19:02 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/03/05 17:51:22 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
+
+int	free_all(t_config *config)
+{
+	free(config->philo);
+	free(config->fork);
+	return (0);
+}
+
+void	print_infos(t_config *config)
+{
+	int	i;
+
+	i = 0;
+	while (i < config->n_philos)
+	{
+		printf("id = %d\n \
+		rfork = %d\n \
+		lfork = %d\n \
+		lst_meal = %ld\n \
+		ate = %d\n",
+			config->philo[i].id,
+			config->philo[i].rfork,
+			config->philo[i].lfork,
+			config->philo[i].lst_meal,
+			config->philo[i].ate);
+		i++;
+	}
+}
 
 int	is_numeric_chars(const char *str)
 {
@@ -38,18 +66,4 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	return (res);
-}
-
-void	ft_bzero(void *s, size_t n)
-{
-	unsigned char	*array;
-	size_t			i;
-
-	i = 0;
-	array = s;
-	while (i < n)
-	{
-		array[i] = '\0';
-		i++;
-	}
 }

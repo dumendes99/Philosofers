@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   time_functions.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/07 20:00:38 by elima-me          #+#    #+#             */
-/*   Updated: 2022/03/01 14:58:27 by elima-me         ###   ########.fr       */
+/*   Created: 2022/02/24 16:46:37 by elima-me          #+#    #+#             */
+/*   Updated: 2022/03/01 14:58:13 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
+#include <sys/time.h>
 
-int	main(int argc, char **argv)
+long int	get_now(void)
 {
-	t_config	config;
+	struct timeval	time;
 
-	memset(&config, '\0', sizeof(t_config));
-	if (setup(argc, argv, &config))
-		return (1);
-	start_banquet(&config);
-	free_all(&config);
-	return (0);
+	gettimeofday(&time, NULL);
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }

@@ -6,7 +6,7 @@
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 22:12:34 by elima-me          #+#    #+#             */
-/*   Updated: 2022/02/12 14:24:08 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/03/05 17:51:22 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,42 +28,66 @@ int	invalid_args(int argc, char **argv)
 	return (0);
 }
 
-int	get_info(t_infoPhilos *info_philos, char **argv)
+int	get_info(t_config *config, char **argv)
 {
 	int	i;
 
 	i = 0;
-	ft_bzero(info_philos, sizeof(t_infoPhilos));
-	info_philos->n_philos = ft_atoi(argv[++i]);
-	info_philos->time_to_die = ft_atoi(argv[++i]);
-	info_philos->time_to_eat = ft_atoi(argv[++i]);
-	info_philos->time_to_sleep = ft_atoi(argv[++i]);
+	config->n_philos = ft_atoi(argv[++i]);
+	config->t_die = ft_atoi(argv[++i]);
+	config->t_eat = ft_atoi(argv[++i]);
+	config->t_sleep = ft_atoi(argv[++i]);
 	if (argv[++i])
 	{
-		info_philos->times_must_eat = ft_atoi(argv[i]);
+		config->times_must_eat = ft_atoi(argv[i]);
 	}
 	return (0);
 }
 
-int	game_validator(t_infoPhilos *info_philos, char **argv)
+int	invalid_simulation(t_config *config, char **argv)
 {
-	if (info_philos->n_philos < 1)
+	if (config->n_philos <= 1)
 		return (print_errors(ERR_NUMBER_PHILOS));
-	if (info_philos->time_to_die == 0 || info_philos->time_to_eat == 0
-		|| info_philos->time_to_sleep == 0)
+	if (config->t_die == 0 || config->t_eat == 0
+		|| config->t_sleep == 0)
 		return (print_errors(ERR_INVALID_VALUE));
-	if (argv[5] && info_philos->times_must_eat == 0)
+	if (argv[5] && config->times_must_eat == 0)
 		return (print_errors(ERR_INVALID_VALUE));
 	return (0);
 }
 
-int	setup(int argc, char **argv, t_infoPhilos *info_philos)
+int	create_philos(t_config *config)
+{
+	int	i;
+
+	i = 0;
+	config->philo = malloc(sizeof(t_philo) * config->n_philos);
+	config->fork = malloc(sizeof(pthread_mutex_t) * config->n_philos);
+	while (i < config->n_philos)
+	{
+		config->philo[i].id = i + 1;
+		config->philo[i].ate = 0;
+		config->philo[i].rfork = i;
+		config->philo[i].lfork = i + 1;
+		config->philo[i].lst_meal = get_now();
+		config->philo[i].config = config;
+		pthread_mutex_init(&config->fork[i], NULL);
+		i++;
+	}
+	config->philo[i - 1].lfork = 0;
+	return (0);
+}
+
+int	setup(int argc, char **argv, t_config *config)
 {
 	if (invalid_args(argc, argv))
 		return (1);
-	if (get_info(info_philos, argv))
+	if (get_info(config, argv))
 		return (2);
-	if (game_validator(info_philos, argv))
+	if (invalid_simulation(config, argv))
 		return (3);
+	create_philos(config);
+	if (!config->fork || !config->philo)
+		return (free_all(config));
 	return (0);
 }
