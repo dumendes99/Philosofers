@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   monitor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 16:48:52 by elima-me          #+#    #+#             */
-/*   Updated: 2022/03/05 18:23:05 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/03/05 23:25:29 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	*monitor_routine(void *sett)
 	while (!config->should_stop)
 	{
 		config->should_stop = should_stop(config);
-		usleep(1);
+		usleep(500);
 	}
 	return (NULL);
 }
