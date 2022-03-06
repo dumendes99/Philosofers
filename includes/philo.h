@@ -6,7 +6,7 @@
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 20:01:49 by elima-me          #+#    #+#             */
-/*   Updated: 2022/03/05 17:51:24 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/03/06 12:01:14 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ struct s_config {
 	pthread_t		monitor;
 	t_philo			*philo;
 	pthread_mutex_t	*fork;
+	pthread_mutex_t	*print;
 };
 
 enum e_errors {

@@ -6,7 +6,7 @@
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 22:12:34 by elima-me          #+#    #+#             */
-/*   Updated: 2022/03/05 18:57:16 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/03/06 11:59:50 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ int	create_philos(t_config *config)
 	i = 0;
 	config->philo = malloc(sizeof(t_philo) * config->n_philos);
 	config->fork = malloc(sizeof(pthread_mutex_t) * config->n_philos);
+	config->print = malloc(sizeof(pthread_mutex_t));
+	pthread_mutex_init(config->print, NULL);
 	while (i < config->n_philos)
 	{
 		config->philo[i].id = i + 1;

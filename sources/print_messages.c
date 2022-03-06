@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_functions.c                                  :+:      :+:    :+:   */
+/*   print_messages.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 21:31:49 by elima-me          #+#    #+#             */
-/*   Updated: 2022/03/02 14:12:56 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/03/06 11:55:27 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 int	print_status(long int now, t_philo *philo, char *status)
 {
+	pthread_mutex_lock(philo->config->print);
 	printf("%ld %d %s\n", (now - philo->config->sim_start),
 		philo->id, status);
+	pthread_mutex_unlock(philo->config->print);
 	return (0);
 }
 

@@ -6,16 +6,32 @@
 /*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 18:29:41 by elima-me          #+#    #+#             */
-/*   Updated: 2022/03/05 17:51:22 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/03/06 12:01:54 by elima-me         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
 
+int	destroy_threads(t_config *config)
+{
+	int i;
+
+	i = config->n_philos;
+	while(i)
+	{
+		pthread_mutex_destroy(&config->fork[i]);
+		i--;
+	}
+	pthread_mutex_destroy(config->print);
+	return(0);
+}
+
 int	free_all(t_config *config)
 {
 	free(config->philo);
 	free(config->fork);
+	free(config->print);
+	destroy_threads(config);
 	return (0);
 }
 
