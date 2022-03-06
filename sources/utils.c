@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elima-me <elima-me@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: coder <coder@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 18:29:41 by elima-me          #+#    #+#             */
-/*   Updated: 2022/03/06 12:01:54 by elima-me         ###   ########.fr       */
+/*   Updated: 2022/03/06 16:07:35 by coder            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 int	destroy_threads(t_config *config)
 {
-	int i;
+	int	i;
 
 	i = config->n_philos;
-	while(i)
+	while (i)
 	{
 		pthread_mutex_destroy(&config->fork[i]);
 		i--;
 	}
 	pthread_mutex_destroy(config->print);
-	return(0);
+	return (0);
 }
 
 int	free_all(t_config *config)
